@@ -1,0 +1,34 @@
+
+statements
+        : statement ';' statements
+        | statement ';'
+        ;
+
+statement
+        : PRINT_KW expression
+        | LET_KW IDENTIFIER '=' expression 
+        | REPEAT_KW statements UNTIL_KW boolean_expression
+        ;
+
+expression
+        : expression '+' term
+        | expression '-' term
+        | term
+        ;
+
+term
+        : term '*' factor
+        | term '/' factor
+        | factor
+        ;
+
+factor
+        : '(' expression ')'
+        | IDENTIFIER
+        | NUMBER
+        | STRING
+        ;
+
+boolean_expression
+        : expression RELOP expression
+        ;
